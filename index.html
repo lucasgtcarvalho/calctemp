@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> CONVERSOR DE TEMPERATURA</title>	
+	<meta name="description" content="Conversor de temperatura.">
+    <meta name="keywords" content="graus, celcius, fahrenheit, kelvin, temperatura.">
+    <meta name="author" content="Lucas Carvalho">
+<style type="text/css">
+body{
+	margin:0;
+	font-family: Helvetica, Arial;
+  	
+  	height: auto; 	
+  	background-image: url(temp.jpg);
+  	opacity: 50;
+
+  	max-width: 1200px;
+  	margin: 0 auto;
+  	width: 100%;
+}
+
+h1, h4{
+	margin: 0;
+	font-family: 'Amatic SC' ;
+}
+table{
+  width: 100%;
+  table-layout: fixed;
+  text-align: center;
+  padding: 10px;
+}
+#calculo{
+	width: 40%;
+	height: 500px;
+	margin-left: 30%;
+	margin-right: 30%;
+	margin-top: 100px;
+	text-align: center;
+}
+.botaoC {
+  margin-top: 20px;
+  margin-left: 100px;
+  float: left;
+  font-size: 15px;
+  border-radius: 4px;
+  color: #fff;
+  height: 30px;
+  opacity: .8;
+  cursor: pointer;
+  background: green;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #500707;
+  border-right: 1px solid #500707;
+  transition: 1s;
+}
+.botaoL {
+  margin-top: 20px;
+  margin-right: 100px;
+  float: right;
+  font-size: 15px;
+  border-radius: 4px;
+  color: #fff;
+  height: 30px;
+  opacity: .8;
+  cursor: pointer;
+  background: red;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #500707;
+  border-right: 1px solid #500707;
+  transition: 1s;
+}
+</style>
+</head>
+<body>
+	<div id="calculo">
+		<h1>Conversor de Temperatura</h1>
+		<h4><p>Insira apenas em um dos campos a temperatura.</p></h4>
+		<br>
+		<br>
+		<table>
+			<tr>
+				<td>Celsius</td>
+				<td><input type="number" name="celsius" id="cel"></td>
+			</tr>
+			<tr>
+				<td>Fahrenheit</td>
+				<td><input type="number" name="fahrenheit" id="fah"></td>
+			</tr>
+			<tr>
+				<td>Kelvin</td>
+				<td><input type="number" name="kelvin" id="kel"></td>
+			</tr>
+		</table>
+		<button id="converter" class="botaoC">Converter</button>
+		<button id="limpar" class="botaoL">Limpar</button>
+	</div>
+	<script type="text/javascript">
+		var btn = document.getElementById('converter');
+		btn.onclick = function converteTemp(){
+			var cel = document.getElementById('cel').value;
+			var fah = document.getElementById('fah').value;
+			var kel = document.getElementById('kel').value;
+			if(cel !== "" && kel === "" && fah === ""){
+				document.getElementById('fah').value = ((parseFloat(cel)*9)/5+32).toFixed(2);
+				document.getElementById('kel').value = (parseFloat(cel)+273.15).toFixed(2);
+			}else if (cel === "" && fah !== "" && kel === ""){
+				document.getElementById('cel').value = (((parseFloat(fah)-32)*5)/9).toFixed(2);
+				document.getElementById('kel').value = (((parseFloat(fah)-32)*5)/9+273.15).toFixed(2);
+			}else if(cel === "" && fah === "" && kel !== ""){
+				document.getElementById('cel').value = (parseFloat(kel) - 273.15).toFixed(2);
+				document.getElementById('fah').value = (((parseFloat(kel)-273.15)*9)/5+32).toFixed(2);
+			}
+		}
+		var limpar = document.getElementById('limpar');
+		limpar.onclick = function limpar(){
+			document.getElementById('cel').value = "";
+			document.getElementById('fah').value = "";
+			document.getElementById('kel').value = "";
+			
+		}
+	</script>
+</body>
+</html>
